@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manga Sammlung Tracker</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Manga Sammlung Tracker</h1>
+      <div class="controls">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Manga suchen…"
+        />
+        <select id="statusFilter">
+          <option value="">Alle Status</option>
+          <option value="reading">Lesend</option>
+          <option value="completed">Abgeschlossen</option>
+          <option value="plan">Plan zu lesen</option>
+          <option value="on-hold">Pausiert</option>
+          <option value="dropped">Abgebrochen</option>
+        </select>
+        <button id="addBtn">Manga hinzufügen</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="stats" class="stats">
+        <div class="stat-item">
+          <span id="totalTitles" class="stat-number">0</span>
+          <span class="stat-label">Titel</span>
+        </div>
+        <div class="stat-item">
+          <span id="chaptersRead" class="stat-number">0</span>
+          <span class="stat-label">Gelesene Kapitel</span>
+        </div>
+        <div class="stat-item">
+          <span id="chaptersTotal" class="stat-number">0</span>
+          <span class="stat-label">Kapitel Gesamt</span>
+        </div>
+        <div class="stat-item">
+          <span id="completionRate" class="stat-number">0%</span>
+          <span class="stat-label">Fortschritt</span>
+        </div>
+      </section>
+      <section id="library" class="library"></section>
+    </main>
+
+    <!-- Modal for adding/editing manga -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2 id="modalTitle">Manga hinzufügen</h2>
+        <form id="mangaForm">
+          <div class="form-row">
+            <label for="searchQuery">Suche Titel</label>
+            <div class="search-row">
+              <input type="text" id="searchQuery" placeholder="Titel suchen" />
+              <button type="button" id="searchApiBtn">API Suche</button>
+            </div>
+          </div>
+          <div id="apiResult" class="api-result"></div>
+          <div class="form-row">
+            <label for="title">Titel *</label>
+            <input type="text" id="title" required />
+          </div>
+          <div class="form-row">
+            <label for="author">Autor</label>
+            <input type="text" id="author" />
+          </div>
+          <div class="form-row">
+            <label for="totalChapters">Kapitel Gesamt</label>
+            <input type="number" id="totalChapters" min="0" />
+          </div>
+          <div class="form-row">
+            <label for="chaptersReadInput">Kapitel gelesen</label>
+            <input
+              type="number"
+              id="chaptersReadInput"
+              min="0"
+              value="0"
+            />
+          </div>
+          <div class="form-row">
+            <label for="statusSelect">Status</label>
+            <select id="statusSelect">
+              <option value="reading">Lesend</option>
+              <option value="completed">Abgeschlossen</option>
+              <option value="plan">Plan zu lesen</option>
+              <option value="on-hold">Pausiert</option>
+              <option value="dropped">Abgebrochen</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="coverUrl">Cover URL</label>
+            <input type="url" id="coverUrl" placeholder="https://…" />
+          </div>
+          <div class="form-row">
+            <label for="synopsis">Synopsis</label>
+            <textarea id="synopsis" rows="3"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" id="saveBtn">Speichern</button>
+            <button type="button" id="cancelBtn">Abbrechen</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
